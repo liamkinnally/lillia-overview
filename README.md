@@ -1,6 +1,6 @@
 # Lillia: AI Coding Agent Orchestrator
 
-Lillia is a local prototype for coordinating AI coding tasks through implementation, independent review, and validation. It keeps the goal, source revisions, agent activity, and review decisions together in one workspace.
+Lillia is my local prototype for coordinating AI coding tasks through implementation, independent review, and validation. It keeps the goal, source revisions, agent activity, and review decisions together in one workspace.
 
 The application connects to **Claude and Codex** through provider adapters. A Node.js background service and SQLite database support a command-line interface and an Electron desktop client. Both clients inspect the same retained workflow history.
 
@@ -15,15 +15,15 @@ The application connects to **Claude and Codex** through provider adapters. A No
 3. **Review and validate.** A separate reviewer inspects the candidate and runs the required checks. Review decisions and validation evidence are associated with the specific revision.
 4. **Accept the revision.** The service checks that the candidate, review, and validation records match before advancing the protected local mainline.
 
-## Why Lillia stores source revisions
+## Why connect source and agent history?
 
-An agent can produce several versions of a change while working on a task. Reviewing revision A does not establish whether revision B is correct. Lillia retains the exact source for each revision and records which revision a check or review covers. Before accepting a change, the service verifies that the evidence matches the selected candidate.
+When an agent's work changes or gets interrupted, I want to understand what it tried, which version was reviewed, and which checks support the accepted result. Lillia keeps goals, attempts, candidate revisions and review decisions together so that context can be inspected without piecing it together from separate conversations and terminal output.
 
-The source store gives the agent workflow a bounded source history in SQLite, alongside its task and review records. Acceptance uses an expected target revision and update counter, so an older request cannot overwrite a target that has moved. Changing the accepted version and recording that change happen together; if recording fails, the accepted version stays where it was.
+The current flow retains exact candidate versions and records which version a review or check covers. Approval of revision A does not approve a later revision B. Before acceptance, the service checks the evidence against the selected candidate and rejects an update if the accepted target has moved. Updating the source reference and recording that change happen together; if recording fails, the reference stays where it was.
 
-SQLite retains goals, attempts, and decisions across service restarts, including interrupted work. The desktop exposes the brief, progress, agent activity, and technical records behind each task.
+The experience I want to build would let someone select an accepted line, open the agent turn and review behind it, or inspect and restore an earlier attempt without confusing that attempt with accepted code. Those interactions are planned; the current source and workflow records provide their foundation.
 
-The broader goal is to make an agent's work traceable: **why is this line here, which agent turn produced it, and what was checked before it was accepted?** Planned additions would connect accepted lines to their originating conversations and let users inspect, restore or branch from retained intermediate steps. Those interactions are not implemented yet; the current source and workflow records provide a foundation for them.
+Git can preserve the source versions for this kind of tool. Lillia's focus is connecting those versions to the work that produced them. The custom SQLite source layer is one implementation approach I am evaluating for that workflow.
 
 ## Completed example
 
@@ -41,7 +41,7 @@ The saved validation record for the reviewed change includes lint, type checking
 
 Lillia is a working local prototype. The demonstrated League workflow used an existing application and a defined two-file scope. Broader whole-application delivery, longer normal-use evaluation, physical sleep/reboot recovery, and continued execution on another host remain unfinished.
 
-The custom source layer is also an architectural experiment. [Source control for agent workflows](docs/source-control.md) explains the broader direction, why we are exploring our own store, what local experiments have shown, and how we plan to compare it with Git. The persistent-backend and real-task workflow comparisons remain future work.
+The custom source layer is also an architectural experiment. [Source control for agent workflows](docs/source-control.md) explains the broader direction, why I am evaluating a custom store, what local experiments have shown, and how I plan to compare it with Git. The persistent-backend and real-task workflow comparisons remain future work.
 
 ## Selected source
 

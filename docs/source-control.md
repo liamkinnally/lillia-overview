@@ -1,8 +1,10 @@
 # Source control for agent workflows
 
-Lillia's source-control work aims to make an agent's changes easy to inspect, explain and recover. The useful history includes the code, the goal that prompted it, the agent turn that changed it, and the review and checks that supported accepting it.
+I am building Lillia to make agent work easier to inspect and recover. When several coding threads overlap, I want to understand which goal a change served, what an agent tried along the way, and which review and checks support the accepted result. That context can be spread across source history, conversations and terminal output.
 
-That matters when several agents work on one project. A thread may try several approaches, a reviewer may reject an early candidate, and another task may move the accepted version forward. The workspace should make those relationships visible without requiring someone to piece them together from conversations, terminal output and source history.
+The intended experience is concrete: select an accepted line and open the agent turn and review behind it; inspect an unsuccessful intermediate attempt; or restore a thread to a retained step without changing accepted code. These interactions are planned. The prototype currently retains source versions and workflow records that they would build on.
+
+There are two decisions here: how to make that workflow useful, and which storage backend should support it. Git already provides source history. Lillia adds the task, agent and evidence relationships around that history. Those relationships are the reason I want to build the tool, and the tool could use a Git backend if that proves to be the better engineering choice.
 
 ## What exists today
 
@@ -15,7 +17,7 @@ The prototype has a custom versioned-source layer built on SQLite. SQLite suppli
 
 The [runnable source example](../examples/source-and-review/README.md) exposes the original store, its limits and failure tests. The [review walkthrough](../examples/source-and-review/docs/review-sequence.md) explains the service-side checks around it. The storage layer alone does not decide whether an agent's work is correct or authorized.
 
-## The interactions we want to build
+## The interactions I want to build
 
 The next work would use those records to answer questions people have while supervising agents:
 
@@ -25,13 +27,13 @@ The next work would use those records to answer questions people have while supe
 
 These interactions are planned, not implemented features of this preview. Later work would depend on the first workflow comparison: a requested conflict resolver could use both changes and their goals to propose a resolution for independent review; inherited write scopes could prevent a child thread from widening its allowed paths without approval. Those scopes would govern acceptance, not replace operating-system isolation.
 
-## Why investigate a custom source store?
+## Why evaluate a custom source store?
 
-The hypothesis is that keeping source state and agent-workflow records in one small, queryable model can make these interactions easier to implement and use. The prototype already puts the accepted revision and the corresponding workflow decision under one transactional authority. Extending that model could let a user move directly from a change to the work that produced it, or restore an intermediate step without reconstructing its context manually.
+The narrower storage question is whether owning a small source model makes the required workflow simpler to implement and maintain. The prototype keeps source state and workflow records in SQLite, so the accepted revision and task-completion decision can share a transaction. I want to test whether extending that model makes step retention, attribution and recovery easier to coordinate without adding more complexity elsewhere.
 
-Git can also retain exact versions, and these user-facing features could be built around Git. A Git-backed design could retain immutable Git objects and record the accepted commit ID with review and completion records in SQLite, then reconcile Git refs and workspaces from that decision. It would need explicit object retention and recovery, but would not require a custom revision format.
+A Git-backed design could retain immutable Git objects and record the accepted commit ID with review and completion records in SQLite, then reconcile Git refs and workspaces from that decision. It would need explicit object retention and recovery. That is a viable alternative for the same user-facing features.
 
-The reason to continue exploring Lillia's store is therefore the potential to simplify the whole agent workflow. Owning the format also creates work: revision reconstruction, retention, recovery, compatibility and Git interoperability all need maintenance. The custom layer has to earn that cost through a better experience or a simpler implementation of the required guarantees.
+The custom implementation gives me a way to explore operations around agent steps and review decisions directly. It also means maintaining a revision format, reconstruction logic, retention, recovery and Git interoperability. Exact versions and branching alone do not justify that cost. I would keep the custom layer if it simplifies workflow coordination enough to outweigh that additional maintenance.
 
 ## What the experiments have shown
 
@@ -43,11 +45,11 @@ Those experiments establish implementation headroom, not a backend winner. The G
 
 ## What would justify keeping it
 
-Two comparisons still matter:
+I plan to evaluate the two decisions separately:
 
 1. **Backend cost.** Compare against a persistent Git backend without repeated CLI startup, with equivalent integrity, permission, acceptance and recovery checks. Measure latency, memory, retained disk space and maintenance as the project and history grow.
 2. **Workflow value.** Compare the native approach with Git worktrees on the same real tasks and provider limits. Measure workspace readiness, manual interventions, recovery effort and the time needed to explain why selected lines exist, alongside wall time and provider usage.
 
-Both remain future work. The custom store is worth keeping if it makes that work meaningfully easier while meeting correctness, compatibility and resource requirements. If a Git-backed implementation supports the same experience with less maintenance, it would be a strong reason to change the storage choice. The goal remains an inspectable, recoverable agent workflow.
+Both comparisons remain future work. The workflow needs to reduce the effort of supervising and recovering agent work. The backend needs to meet correctness and compatibility requirements at an acceptable cost in resources and maintenance. If Git supports the same experience with less engineering overhead, I would change the storage choice.
 
 [Return to the Lillia overview](../README.md)
