@@ -15,7 +15,15 @@ The application connects to **Claude and Codex** through provider adapters. A No
 3. **Review and validate.** A separate reviewer inspects the candidate and runs the required checks. Review decisions and validation evidence are associated with the specific revision.
 4. **Accept the revision.** The service checks that the candidate, review, and validation records match before advancing the protected local mainline.
 
-A source store preserves immutable revisions for inspection and comparison. SQLite retains goals, attempts, and decisions across service restarts, including interrupted work. The desktop exposes the brief, progress, agent activity, and technical records behind each task.
+## Why Lillia stores source revisions
+
+An agent can produce several versions of a change while working on a task. Reviewing revision A does not establish whether revision B is correct. Lillia retains the exact source for each revision and records which revision a check or review covers. Before accepting a change, the service verifies that the evidence matches the selected candidate.
+
+The source store gives the agent workflow a bounded source history in SQLite, alongside its task and review records. Acceptance uses an expected target revision and update counter, so an older request cannot overwrite a target that has moved. Changing the accepted version and recording that change happen together; if recording fails, the accepted version stays where it was.
+
+SQLite retains goals, attempts, and decisions across service restarts, including interrupted work. The desktop exposes the brief, progress, agent activity, and technical records behind each task.
+
+The broader goal is to make an agent's work traceable: **why is this line here, which agent turn produced it, and what was checked before it was accepted?** Planned additions would connect accepted lines to their originating conversations and let users inspect, restore or branch from retained intermediate steps. Those interactions are not implemented yet; the current source and workflow records provide a foundation for them.
 
 ## Completed example
 
@@ -33,4 +41,10 @@ The saved validation record for the reviewed change includes lint, type checking
 
 Lillia is a working local prototype. The demonstrated League workflow used an existing application and a defined two-file scope. Broader whole-application delivery, longer normal-use evaluation, physical sleep/reboot recovery, and continued execution on another host remain unfinished.
 
-This repository contains the project overview and saved screenshots. The application source remains private.
+The custom source layer is also an architectural experiment. A planned comparison with Git worktrees will assess workspace setup, manual interventions and the effort required to trace code back to its origin. That comparison has not run. The [source example](examples/source-and-review/README.md#storage-choice-and-git) explains the storage choice and its tradeoffs.
+
+## Selected source
+
+The [source storage and review example](examples/source-and-review/README.md) shows the implemented foundation for that work: retaining the code an agent changed, rejecting outdated updates, and recording acceptance consistently. It includes the original implementation, a runnable SQLite demonstration, failure tests, and a walkthrough of how the service matches review evidence to the candidate. The example runs without model accounts or external packages.
+
+This repository contains the overview, screenshots and selected source example. The complete application source remains private.
