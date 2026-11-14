@@ -41,7 +41,7 @@ The saved validation record for the reviewed change includes lint, type checking
 
 Lillia is a working local prototype. The demonstrated League workflow used an existing application and a defined two-file scope. Broader whole-application delivery, longer normal-use evaluation, physical sleep/reboot recovery, and continued execution on another host remain unfinished.
 
-The custom source layer is also an architectural experiment. A planned comparison with Git worktrees will assess workspace setup, manual interventions and the effort required to trace code back to its origin. That comparison has not run. The [source example](examples/source-and-review/README.md#storage-choice-and-git) explains the storage choice and its tradeoffs.
+The custom source layer is also an architectural experiment. [Source control for agent workflows](docs/source-control.md) explains the broader direction, why we are exploring our own store, what local experiments have shown, and how we plan to compare it with Git. The persistent-backend and real-task workflow comparisons remain future work.
 
 ## Selected source
 

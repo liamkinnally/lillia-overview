@@ -30,7 +30,7 @@ This is a custom source-versioning layer built on SQLite. Keeping revisions and 
 
 Git can also preserve exact source versions, and agent-history features could be built around it. An alternative design could record the accepted Git commit ID alongside review and completion records in SQLite, with explicit recovery for Git reference and checkout updates. A custom revision format is not required for that design.
 
-The native store is an experiment in supporting this workflow. A planned comparison with Git worktrees will measure workspace setup, manual interventions and the effort required to trace accepted code back to its origin. That comparison has not run, so this preview demonstrates implementation behavior, not an established advantage over Git.
+The native store is an experiment in supporting this workflow. [Source control for agent workflows](../../docs/source-control.md) explains the broader direction, isolated optimization work, and the planned persistent-Git and real-task workflow comparisons. Those comparisons remain future work; this preview demonstrates the original implementation, not an established advantage over Git.
 
 ## Run it
 
