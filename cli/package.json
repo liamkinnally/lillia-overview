@@ -1,0 +1,29 @@
+{
+  "name": "lillia",
+  "version": "0.1.0-alpha.1",
+  "private": true,
+  "license": "UNLICENSED",
+  "description": "Local terminal workspace for reviewed coding tasks",
+  "type": "module",
+  "engines": {
+    "node": "24.22.2"
+  },
+  "bin": {
+    "lillia": "./src/cli.mjs",
+    "scion": "./src/cli.mjs"
+  },
+  "files": [
+    "src/",
+    "public/",
+    "docs/cli.md",
+    "test/"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liamkinnally/lillia-overview.git",
+    "directory": "cli"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.mjs"
+  }
+}

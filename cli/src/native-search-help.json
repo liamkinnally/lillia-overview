@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "modes": {
+    "text": {
+      "example": "return 17",
+      "hint": "Find literal text. Case-sensitive."
+    },
+    "path": {
+      "example": "src/report.py",
+      "hint": "Find a literal substring of a file path."
+    },
+    "regex": {
+      "example": "^    return [0-9]+$",
+      "hint": "Bounded per-line regex: anchors, classes, *, +, ?. No groups, alternation or counted repetition."
+    },
+    "glob": {
+      "example": "**/*.py",
+      "hint": "Match paths: * and ? stay within one path component; ** crosses directories."
+    },
+    "definition": {
+      "example": "report_total",
+      "hint": "Find Python 3.9 function or class definitions by name, not call sites."
+    }
+  }
+}

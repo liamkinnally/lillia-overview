@@ -1,0 +1,289 @@
+// This enrolled profile fixes the project's actual Vitest configuration, import closure and package lock.
+export const profile = 'darwin-league-sample-profile-vitest-v1';
+export const componentPath = 'frontend/src/components/sample-player-profile.tsx';
+export const testPath = 'frontend/src/components/sample-player-profile.test.tsx';
+export const nodeDigest = 'b6fb419f0f43bb2fbca273700294dd2f3b685a64b60e8417c295f47646a70e4a';
+export const baseFiles = Object.freeze({
+  'frontend/package-lock.json': '13ddd4f4bf64a8c154af8155f9664c1e0659f8e1d25f4488c06e8d6a02607d7f',
+  'frontend/package.json': '8e85bc882c0179d6463761a60c3449df1388c2ecdff0648db5be85733677690a',
+  'frontend/src/components/asset-tooltip.tsx':
+    '1da964f30c01e246f81cd74784278afb50da04ef679f94b4b993266c9b5f4bcd',
+  'frontend/src/components/final-item-slots.tsx':
+    'fde8b4136bcd1de83c58f1d3cfe6ea44798fbb9713fb7366417c15476213a2f8',
+  'frontend/src/components/game-asset-icon.tsx':
+    '40a29c85a10808343ab314bc3f7bde96bc94e2e63b0c2df0942ce970408af267',
+  'frontend/src/components/match-history.tsx':
+    'e61e2d3d7b0ea98f2d6ebc119032f8183ac4adc941b0b388a9840af7a97887c5',
+  'frontend/src/components/player-performance.css':
+    '4f8f6f7614f569e6b831944410c472d4949b5b93d889c9372c7f647049b7a902',
+  'frontend/src/components/player-performance.tsx':
+    '88146897b5368c31412a8023a90aa184e06ebc55022c4c6551cbd610e6b29ba4',
+  'frontend/src/components/player-profile.tsx':
+    'a8d3c7501e94b694a9453971a350d3c67e05dfaec370740f32398cec76779913',
+  'frontend/src/components/rank-history-chart.tsx':
+    'dbbc8417409b60dc00c97297ca796cbe8ecd03e1106827d1fff73850b7a78eab',
+  'frontend/src/components/rank-observations.tsx':
+    'cc775439283b19c149134a6189fb15e85c510036d37c3e27946aa07705158841',
+  'frontend/src/components/sample-player-profile.test.tsx':
+    'c9a9f1e43efd74b4b84dcf726d7fc9f341d60310dffc5ee59ce80726b3518ce7',
+  'frontend/src/components/sample-player-profile.tsx':
+    'f3706c33a80b9e2bf0db3f3e4938bec669685a2a8397f823d555f4154783e1d3',
+  'frontend/src/lib/development/results.ts':
+    '080f85b8905b30cde6633eb2f2be301b029d361b4737c9c6cb5e88800368a298',
+  'frontend/src/lib/development/route.ts':
+    'b77d71dbf7b02202ff71f37f613723516bd5db629dc7459dafe28f269cb1fdb7',
+  'frontend/src/lib/development/types.ts':
+    '64b888c33dde7c268970aacc71259c1a3b5335b699fdfb34212883c6d4cce448',
+  'frontend/src/lib/game-assets/event-assets.ts':
+    '0fec2d12aba4909a914f4cd8027789f89e9c4fd38ccd9f375f0aeaced0a155c5',
+  'frontend/src/lib/game-assets/manifest.ts':
+    '332a8ab28f1dbf0b79e654f743b5d3779a84784991b132ac0d09443cb2c82230',
+  'frontend/src/lib/game-assets/types.ts':
+    '5301699677c6bdf19c1fbaf0e84315971ffd4c72440608abe295500acf281eed',
+  'frontend/src/lib/game-assets/urls.ts':
+    '604b25501676f7dc879799e66677d595a9002f356ab136c19004a1d9e63a9303',
+  'frontend/src/lib/game-assets/use-game-assets.ts':
+    'a4d0192c9b38d6f4d41ec770b1dee77b01d718aabb6550a73498bf42e77dd4c3',
+  'frontend/src/lib/match-result.ts':
+    'd5fe3c846b52b4ee92b23756ba8bb69c19eacd83a212bb286b66f8be3a3717da',
+  'frontend/src/lib/player-lookup/performance.ts':
+    'b3359a445bda5abc492ca44986a00d5d88ccdfb41fa88363a4cc84703c35a3fc',
+  'frontend/src/lib/player-lookup/profile.ts':
+    'a8ded6e696acf081ae9780539781cb71f2b4c7e64d237825ff56a59b919597e0',
+  'frontend/src/lib/player-lookup/regions.ts':
+    '0c43f3bae0056dafc1a8b51a7d2e7e498cf181dd15d415249c92e7a3ee2c1510',
+  'frontend/src/lib/player-lookup/types.ts':
+    '39b5e0db9183c6741504e9ef0c71064ff41182031899de9d6688a8defa5dfdec',
+  'frontend/src/sample/profile.ts':
+    'fd673e9aa2ac402a4e2c11bb64a7ef668edf4e9509b1c917cf254e519886bbbf',
+  'frontend/src/test/setup.ts': '311a88e2e261870143c0a37af37f7bdb7e223077d48b66d2e4ac99a73905068d',
+  'frontend/tsconfig.json': 'e4af146ba7a1934b949dac6d434642f063835596062b770cf304b00073f84e82',
+  'frontend/vitest.config.mts': 'c88227a9a5a68b1b4960b6e0357ef7fe5915aa096ca7b6acf2f5fff027ae974a'
+});
+export const packages = Object.freeze(
+  `
+node_modules/@acemir/cssom
+node_modules/@adobe/css-tools
+node_modules/@asamuzakjp/css-color
+node_modules/@asamuzakjp/css-color/node_modules/lru-cache
+node_modules/@asamuzakjp/dom-selector
+node_modules/@asamuzakjp/dom-selector/node_modules/lru-cache
+node_modules/@asamuzakjp/nwsapi
+node_modules/@babel/code-frame
+node_modules/@babel/compat-data
+node_modules/@babel/core
+node_modules/@babel/core/node_modules/semver
+node_modules/@babel/generator
+node_modules/@babel/helper-compilation-targets
+node_modules/@babel/helper-compilation-targets/node_modules/semver
+node_modules/@babel/helper-globals
+node_modules/@babel/helper-module-imports
+node_modules/@babel/helper-module-transforms
+node_modules/@babel/helper-plugin-utils
+node_modules/@babel/helper-string-parser
+node_modules/@babel/helper-validator-identifier
+node_modules/@babel/helper-validator-option
+node_modules/@babel/helpers
+node_modules/@babel/parser
+node_modules/@babel/plugin-transform-react-jsx-self
+node_modules/@babel/plugin-transform-react-jsx-source
+node_modules/@babel/runtime
+node_modules/@babel/template
+node_modules/@babel/traverse
+node_modules/@babel/types
+node_modules/@csstools/color-helpers
+node_modules/@csstools/css-calc
+node_modules/@csstools/css-color-parser
+node_modules/@csstools/css-parser-algorithms
+node_modules/@csstools/css-syntax-patches-for-csstree
+node_modules/@csstools/css-tokenizer
+node_modules/@esbuild/darwin-arm64
+node_modules/@exodus/bytes
+node_modules/@jridgewell/gen-mapping
+node_modules/@jridgewell/remapping
+node_modules/@jridgewell/resolve-uri
+node_modules/@jridgewell/sourcemap-codec
+node_modules/@jridgewell/trace-mapping
+node_modules/@next/env
+node_modules/@playwright/test
+node_modules/@reduxjs/toolkit
+node_modules/@rolldown/pluginutils
+node_modules/@rollup/rollup-darwin-arm64
+node_modules/@standard-schema/spec
+node_modules/@standard-schema/utils
+node_modules/@swc/helpers
+node_modules/@testing-library/dom
+node_modules/@testing-library/jest-dom
+node_modules/@testing-library/jest-dom/node_modules/dom-accessibility-api
+node_modules/@testing-library/react
+node_modules/@types/aria-query
+node_modules/@types/babel__core
+node_modules/@types/babel__generator
+node_modules/@types/babel__template
+node_modules/@types/babel__traverse
+node_modules/@types/chai
+node_modules/@types/d3-array
+node_modules/@types/d3-color
+node_modules/@types/d3-ease
+node_modules/@types/d3-interpolate
+node_modules/@types/d3-path
+node_modules/@types/d3-scale
+node_modules/@types/d3-shape
+node_modules/@types/d3-time
+node_modules/@types/d3-timer
+node_modules/@types/deep-eql
+node_modules/@types/estree
+node_modules/@types/node
+node_modules/@types/react
+node_modules/@types/react-dom
+node_modules/@types/use-sync-external-store
+node_modules/@vitejs/plugin-react
+node_modules/@vitest/expect
+node_modules/@vitest/mocker
+node_modules/@vitest/pretty-format
+node_modules/@vitest/runner
+node_modules/@vitest/snapshot
+node_modules/@vitest/spy
+node_modules/@vitest/utils
+node_modules/agent-base
+node_modules/ansi-regex
+node_modules/aria-query
+node_modules/assertion-error
+node_modules/baseline-browser-mapping
+node_modules/bidi-js
+node_modules/browserslist
+node_modules/caniuse-lite
+node_modules/chai
+node_modules/client-only
+node_modules/clsx
+node_modules/convert-source-map
+node_modules/css-tree
+node_modules/css.escape
+node_modules/cssstyle
+node_modules/cssstyle/node_modules/lru-cache
+node_modules/csstype
+node_modules/d3-array
+node_modules/d3-color
+node_modules/d3-ease
+node_modules/d3-format
+node_modules/d3-interpolate
+node_modules/d3-path
+node_modules/d3-scale
+node_modules/d3-shape
+node_modules/d3-time
+node_modules/d3-time-format
+node_modules/d3-timer
+node_modules/data-urls
+node_modules/data-urls/node_modules/whatwg-mimetype
+node_modules/debug
+node_modules/decimal.js
+node_modules/decimal.js-light
+node_modules/dequal
+node_modules/detect-libc
+node_modules/dom-accessibility-api
+node_modules/electron-to-chromium
+node_modules/entities
+node_modules/es-module-lexer
+node_modules/es-toolkit
+node_modules/esbuild
+node_modules/escalade
+node_modules/estree-walker
+node_modules/eventemitter3
+node_modules/expect-type
+node_modules/fsevents
+node_modules/gensync
+node_modules/html-encoding-sniffer
+node_modules/http-proxy-agent
+node_modules/https-proxy-agent
+node_modules/immer
+node_modules/indent-string
+node_modules/internmap
+node_modules/is-potential-custom-element-name
+node_modules/jiti
+node_modules/js-tokens
+node_modules/jsdom
+node_modules/jsesc
+node_modules/json5
+node_modules/lightningcss
+node_modules/lightningcss-darwin-arm64
+node_modules/lru-cache
+node_modules/lz-string
+node_modules/magic-string
+node_modules/mdn-data
+node_modules/min-indent
+node_modules/ms
+node_modules/nanoid
+node_modules/next
+node_modules/node-releases
+node_modules/obug
+node_modules/parse5
+node_modules/pathe
+node_modules/picocolors
+node_modules/playwright
+node_modules/playwright-core
+node_modules/postcss
+node_modules/pretty-format
+node_modules/pretty-format/node_modules/ansi-styles
+node_modules/punycode
+node_modules/react
+node_modules/react-dom
+node_modules/react-is
+node_modules/react-redux
+node_modules/react-refresh
+node_modules/recharts
+node_modules/redent
+node_modules/redux
+node_modules/redux-thunk
+node_modules/require-from-string
+node_modules/reselect
+node_modules/rollup
+node_modules/saxes
+node_modules/scheduler
+node_modules/semver
+node_modules/sharp
+node_modules/siginfo
+node_modules/source-map-js
+node_modules/stackback
+node_modules/std-env
+node_modules/strip-indent
+node_modules/styled-jsx
+node_modules/symbol-tree
+node_modules/tailwind-merge
+node_modules/tiny-invariant
+node_modules/tinybench
+node_modules/tinyexec
+node_modules/tinyglobby
+node_modules/tinyglobby/node_modules/fdir
+node_modules/tinyglobby/node_modules/picomatch
+node_modules/tinyrainbow
+node_modules/tldts
+node_modules/tldts-core
+node_modules/tough-cookie
+node_modules/tr46
+node_modules/tslib
+node_modules/undici-types
+node_modules/update-browserslist-db
+node_modules/use-sync-external-store
+node_modules/victory-vendor
+node_modules/vite
+node_modules/vite/node_modules/fdir
+node_modules/vite/node_modules/picomatch
+node_modules/vitest
+node_modules/vitest/node_modules/picomatch
+node_modules/w3c-xmlserializer
+node_modules/webidl-conversions
+node_modules/whatwg-mimetype
+node_modules/whatwg-url
+node_modules/why-is-node-running
+node_modules/ws
+node_modules/xml-name-validator
+node_modules/xmlchars
+node_modules/yallist
+`
+    .trim()
+    .split(/\s+/)
+);
+export const runnerConfig =
+  'import original from "./vitest.config.mts";\nimport { mergeConfig } from "vitest/config";\nexport default mergeConfig(original, {server:{host:"127.0.0.1",watch:null}});\n';
+export const seatbelt =
+  '(version 1)\n(deny default)\n(import "dyld-support.sb")\n(allow sysctl-read)\n(allow process-fork)\n(allow process-exec (literal (param "node")) (literal (param "esbuild")))\n(allow file-read* (subpath (param "inputs")) (subpath (param "scratch"))\n  (literal (param "node")) (literal "/dev/null") (literal "/dev/urandom"))\n(allow file-read-metadata (literal "/") (literal "/private") (literal "/private/tmp") (literal (param "base")))\n(allow file-map-executable (literal (param "node")) (literal (param "esbuild")) (literal (param "rollup")) (subpath "/usr/lib"))\n\n(allow file-write-data (literal "/dev/null"))\n';

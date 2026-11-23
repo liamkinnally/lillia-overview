@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#121315">
+  <title>Lillia</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script type="module" src="/app.js"></script>
+</head>
+<body>
+  <header class="app-header">
+    <a class="brand" href="/" aria-label="Lillia home"><span class="brand-mark" aria-hidden="true">&gt;_</span><span>Lillia</span></a>
+    <div class="header-status"><span id="connection-status" class="connection-status">Connecting…</span><span class="header-divider"></span><span id="runtime-status" class="status-pill">Runtime starting</span><button id="reconnect" class="button button-quiet button-small" type="button">Reconnect</button></div>
+  </header>
+  <div id="global-error" class="global-error" role="alert" hidden></div>
+  <div id="runtime-error" class="global-error" role="status" hidden></div>
+  <div class="workspace-bar"><div><span class="eyebrow">LOCAL WORKSPACE</span><span id="workspace-path" class="workspace-path">Loading workspace…</span></div><span class="local-label"><span class="dot"></span>Local connection</span></div>
+  <main class="app-layout">
+    <aside class="task-sidebar" aria-label="Assignments">
+      <div class="sidebar-heading"><h1>Assignments</h1><span id="task-count" class="count">0</span></div>
+      <button class="button button-primary new-task-button" data-new-task type="button"><span aria-hidden="true">＋</span> New assignment <kbd>N</kbd></button>
+      <div class="queue-control"><div><span id="queue-indicator" class="dot lime"></span><span id="queue-label">Queue running</span></div><button id="toggle-queue" class="text-button" type="button">Pause</button></div>
+      <div class="filters" role="group" aria-label="Filter assignments"><button data-filter="all" class="filter active" aria-pressed="true">All</button><button data-filter="active" class="filter" aria-pressed="false">Active</button><button data-filter="attention" class="filter" aria-pressed="false">Attention</button><button data-filter="done" class="filter" aria-pressed="false">Done</button></div>
+      <div id="task-list" class="task-list" aria-live="polite"><div class="list-empty">Connecting to your workspace…</div></div>
+      <div class="sidebar-footer"><span class="mini-icon" aria-hidden="true">⌘</span><p>Built on the Codex app server.<br>Work stays in your workspace.</p></div>
+    </aside>
+    <section id="empty-detail" class="empty-detail" aria-label="Workspace overview">
+      <div class="empty-symbol" aria-hidden="true">&gt;_</div><span class="eyebrow">YOUR LOCAL CONTROL ROOM</span><h2>A clear space for<br>your next assignment.</h2><p>Give Codex a focused task. Follow its output,<br class="desktop-break"> review requests, and pick up where you left off.</p><button class="button button-primary" data-new-task type="button">Create an assignment <span aria-hidden="true">↗</span></button>
+      <div class="empty-notes"><div><span class="note-number">01</span><span>Choose a working directory</span></div><div><span class="note-number">02</span><span>Describe the outcome</span></div><div><span class="note-number">03</span><span>Review work as it happens</span></div></div>
+      <p class="empty-footnote">Read-only sandbox by default. You review approval requests.</p>
+    </section>
+    <section id="task-detail" class="task-detail" aria-label="Selected assignment" hidden>
+      <div class="detail-heading"><div class="detail-breadcrumb">ASSIGNMENT <span id="detail-id"></span></div><div class="detail-title-row"><h2 id="detail-title"></h2><span id="detail-status" class="status-pill"></span></div><div id="detail-meta" class="detail-meta"></div><div class="detail-action-row"><span id="detail-time" class="muted"></span><button id="interrupt" class="button button-small button-danger" type="button" hidden>Interrupt task</button></div></div>
+      <div class="detail-body"><div class="work-column"><div id="task-error" class="inline-error" role="alert" hidden></div><section id="approvals" aria-label="Requests awaiting your response"></section><details class="prompt-section"><summary>Assignment brief <span aria-hidden="true">⌄</span></summary><pre id="detail-prompt"></pre></details><section class="output-section"><div class="section-heading"><h3><span class="output-icon" aria-hidden="true">&gt;_</span> Output</h3><span id="output-label" class="muted"></span></div><pre id="task-output" class="task-output"></pre><div id="output-empty" class="output-empty"><span aria-hidden="true">⌁</span><p>Output will appear here when the task runs.</p></div></section><form id="continue-form" class="continue-form" hidden><label for="continue-prompt">Continue this thread</label><textarea id="continue-prompt" maxlength="20000" rows="3" placeholder="Describe the next step…" required></textarea><div class="continue-footer"><span>A new assignment in the same Codex thread.</span><button class="button button-primary button-small" type="submit">Continue <span aria-hidden="true">↗</span></button></div><p id="continue-error" class="form-error" role="alert" hidden></p></form></div><aside class="activity-panel"><div class="section-heading"><h3>Activity</h3><span id="activity-count" class="count">0</span></div><div id="activity-list" class="activity-list"></div><div id="thread-info" class="thread-info"></div></aside></div>
+    </section>
+  </main>
+  <dialog id="new-task-dialog"><form id="new-task-form"><div class="dialog-heading"><div><span class="eyebrow">LET'S GET TO WORK</span><h2>New assignment</h2></div><button id="close-dialog" class="icon-button" type="button" aria-label="Close new assignment">×</button></div><label for="task-title">Title</label><input id="task-title" name="title" placeholder="A short, useful name" maxlength="160" required><label for="task-prompt">What should Codex do?</label><textarea id="task-prompt" name="prompt" maxlength="20000" rows="5" placeholder="Describe the task, relevant context, and what a good outcome looks like…" required></textarea><label for="task-cwd">Working directory</label><input id="task-cwd" name="cwd" placeholder="Workspace root"><p class="field-help">Choose a directory inside your configured workspace.</p><div class="form-grid"><div><label for="task-model">Model</label><select id="task-model" name="model"><option value="">Runtime default</option></select></div><div><label for="task-sandbox">Sandbox</label><select id="task-sandbox" name="sandbox"><option value="read-only">Read-only</option><option value="workspace-write">Workspace write</option></select></div></div><details class="advanced-fields"><summary>Prerequisites <span class="muted">Optional</span></summary><div id="dependency-options" class="dependency-options"></div><p class="field-help">The assignment starts after all selected prerequisites complete.</p></details><p id="new-task-error" class="form-error" role="alert" hidden></p><div class="dialog-footer"><span>Requests are reviewed by you.</span><button id="create-task" class="button button-primary" type="submit">Add to queue <span aria-hidden="true">↗</span></button></div></form></dialog>
+</body>
+</html>

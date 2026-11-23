@@ -4,7 +4,7 @@ An approval is useful only if it covers the source being accepted. If a reviewer
 
 The source store supplies retained bytes and stable revision identities. The workflow records which revision each agent read or changed and which revision its checks and verdict cover. The service validates those records before asking the store to advance the accepted reference, a named pointer to the current accepted revision. That division gives the review logic an exact source history to check and the storage layer a specific update to apply.
 
-This walkthrough contains selected internal source excerpts from snapshot `a09c83bd79b844fbab28f90e2bff9ca50de7e7a3`. Paths and line numbers refer to that snapshot; the full application is not included. The [storage example](../README.md) is runnable. This document does not provide a standalone review verifier or run agents.
+This walkthrough contains selected internal source excerpts from snapshot `a09c83bd79b844fbab28f90e2bff9ca50de7e7a3`. Paths and line numbers refer to that snapshot. The [current CLI implementation](../../../cli/) includes the service code for the published alpha. The [storage example](../README.md) is runnable. This document does not provide a standalone review verifier or run agents.
 
 ## Inputs and an illustrative sequence
 

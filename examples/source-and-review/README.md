@@ -2,7 +2,7 @@
 
 Lillia's source store preserves the code behind an agent task so the service can check that the submission, reviewer approval and final validation results refer to the candidate being accepted. It also records which revision became the accepted version.
 
-This example includes the prototype's **original source store**, a runnable storage demonstration, and an [annotated review walkthrough](docs/review-sequence.md). It exposes the persistence mechanism and explains how the application uses it. The complete orchestrator and its provider integrations remain private.
+This example includes the prototype's **original source store**, a runnable storage demonstration, and an [annotated review walkthrough](docs/review-sequence.md). It exposes the persistence mechanism and explains how the application uses it. The [CLI source](../../cli/) now includes the local service and provider adapters used by the terminal alpha.
 
 ## From source history to agent history
 

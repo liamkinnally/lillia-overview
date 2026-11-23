@@ -15,7 +15,7 @@ The prototype has a custom versioned-source layer built on SQLite. SQLite suppli
 - **Conditional acceptance.** An expected target revision and update counter prevent an outdated request from replacing a target that has moved.
 - **Consistent acceptance records.** The source reference and its history event update together. The demonstrated project flow also records source acceptance and task completion in one SQLite transaction.
 
-The [runnable source example](../examples/source-and-review/README.md) exposes the original store, its limits and failure tests. The [review walkthrough](../examples/source-and-review/docs/review-sequence.md) explains the service-side checks around it. The storage layer alone does not decide whether an agent's work is correct or authorized.
+The [terminal alpha and local service](../cli/) publish the implementation behind the guided project workflow. The [runnable source example](../examples/source-and-review/README.md) exposes the original store, its limits and failure tests. The [review walkthrough](../examples/source-and-review/docs/review-sequence.md) explains the service-side checks around it. The storage layer alone does not decide whether an agent's work is correct or authorized.
 
 ## The interactions I want to build
 
