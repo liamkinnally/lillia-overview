@@ -9,8 +9,7 @@
     "node": "24.22.2"
   },
   "bin": {
-    "lillia": "./src/cli.mjs",
-    "scion": "./src/cli.mjs"
+    "lillia": "./src/cli.mjs"
   },
   "files": [
     "src/",

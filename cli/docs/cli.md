@@ -51,3 +51,7 @@ This alpha supports the exact native and host versions above. A signed-out older
 ```
 
 Progress, review and patch export can be inspected locally once a task has run. The alpha includes no Electron installer and has no interactive Claude sign-in option.
+
+## Where the name Scion appears
+
+Scion was the project's earlier name, and it remains part of the stored formats. The default data directory is `~/.local/share/scion`, retained Git revisions use refs under `refs/scion/`, temporary folders start with `scion-`, and native file identities include `scion-native` in their hash input. Changing those names would change stored identities, so they stay as they are. `SCION_DATA_DIR` and `SCION_WORKSPACE_ROOT` are still accepted as fallbacks for `LILLIA_DATA_DIR` and `LILLIA_WORKSPACE_ROOT`. The installed command is only `lillia`.

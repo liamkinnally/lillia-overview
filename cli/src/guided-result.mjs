@@ -232,8 +232,11 @@ async function exportPatch(command, landing, config, previewOnly) {
     need(patch.length, 'Git found no difference between the reviewed files.');
     if (previewOnly) {
       const limit = 6000;
+      // Step back over UTF-8 continuation bytes so the cut never splits a character.
+      let end = Math.min(limit, patch.length);
+      if (end < patch.length) while (end > 0 && (patch[end] & 0xc0) === 0x80) end--;
       return (
-        stripVTControlCharacters(patch.subarray(0, limit).toString('utf8')) +
+        stripVTControlCharacters(patch.subarray(0, end).toString('utf8')) +
         (patch.length > limit
           ? '\n… Preview ends here. Save the patch to see the full change.'
           : '')

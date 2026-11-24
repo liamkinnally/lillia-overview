@@ -21,7 +21,7 @@ const base = '1'.repeat(64),
   candidate = '2'.repeat(64),
   goalId = 'goal-01',
   repository = 'demo';
-async function fixture(t) {
+async function fixture(t, patched = 'first\npatched\n') {
   const root = await mkdtemp(join(await realpath(tmpdir()), 'guided-result-'));
   t.after(() => rm(root, { recursive: true, force: true }));
   const workspaceRoot = join(root, 'work'),
@@ -101,7 +101,7 @@ async function fixture(t) {
     }
   };
   const changed = [
-    ['src/a b.txt', 'first\nold\n', 'first\npatched\n', '100644', '100644'],
+    ['src/a b.txt', 'first\nold\n', patched, '100644', '100644'],
     ['gone.txt', 'remove me', null, '100644', null],
     ['new file.txt', null, 'no trailing newline', null, '100644'],
     ['run.sh', 'exit 0\n', 'exit 0\n', '100644', '100755'],
@@ -300,4 +300,14 @@ test('previews the verified change without writing an output directory', async (
   assert.match(preview, /diff --git/);
   assert.match(preview, /\+patched/);
   await assert.rejects(stat(f.config.outputDir), {code: 'ENOENT'});
+});
+
+test('a long preview never ends partway through a multi-byte character', async (t) => {
+  // Two-byte characters with both alignments guarantee one run lands the cut inside a character.
+  for (const pad of ['', 'x']) {
+    const f = await fixture(t, 'first\n' + pad + 'é'.repeat(4000) + '\n');
+    const preview = await deliverResult({ ...f, previewOnly: true });
+    assert.match(preview, /Preview ends here/);
+    assert.ok(!preview.includes('\uFFFD'), 'preview contains a replacement character');
+  }
 });
